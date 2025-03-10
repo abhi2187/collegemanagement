@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard</title>
+    <style>
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f5f9;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #1f2937;
+    color: white;
+    padding: 1rem;
+}
+
+.sidebar-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.nav-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: none;
+    border: none;
+    color: white;
+    text-align: left;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.bottom {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: none;
+    border: none;
+    color: white;
+    text-align: left;
+    cursor: pointer;
+    margin-top: 1rem; /* Adjusted margin to be more reasonable */
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-button:hover {
+    background-color: #374151;
+}
+
+.nav-button.active {
+    background-color: #2563eb;
+}
+
+.main-content {
+    flex: 1;
+    padding: 1.5rem;
+    margin-top: 0; /* Ensure no top margin is pushing content down */
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.dashboard-grid {
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.card {
+    width: 100%;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card2 {
+    width: 100%;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-top: 1.5rem;
+}
+
+.profile-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-top: 1.5rem;
+    width: 100%;
+    
+    margin-right: 700px;
+
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.info-section h3 {
+    margin-bottom: 1rem;
+    color: #1f2937;
+}
+
+.info-item {
+    margin-bottom: 0.5rem;
+}
+
+.info-label {
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+/* Update */
+
+.container2 {
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background-color: aquamarine;
+    margin-right: 300px;
+}
+
+.container2 form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin-left: 70px;
+    margin-bottom: 20px;
+    background-color: rgb(74, 237, 237);
+    border-radius: 20px;
+    width: 400px;
+    padding: 20px;
+
+}
+
+.container2 span h1 {
+    padding: 5px 10px;
+    background-color: #f8e7e7;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    text-align: center;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+label {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: rgb(38, 7, 7);
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+select {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: rgb(121, 77, 77);
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(77, 77, 121);
+}
+
+input::placeholder {
+    font-size: 15px;
+}
+
+input:focus {
+    border: 2px solid rgb(77, 77, 121);
+}
+
+table {
+    width: 100% auto;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 10px 5px;
+    text-align: left;
+}
+
+th {
+    background-color: #1f2937;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+#dashboard2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position:absolute;
+    top: 0;
+    margin-left: 280px;
+    margin-right: 10px;
+    
+}
+
+.std {
+    align-items: center;
+    background-color: #f8e7e7;
+    margin-top: 50px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover {
+    color: black;
+    cursor: pointer;
+}
+    </style>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <div class="container">
+
+        <div class="sidebar">
+            <div class="sidebar-title">Faculty</div>
+            <button class="nav-button active" onclick="showPage('dashboard')">
+                📊 Dashboard
+            </button>
+            <button class="nav-button" onclick="showPage('profile')">
+                👤 Profile
+            </button>
+            <button class="nav-button" onclick="showPage('profile2')">
+                👤 Update your profile
+            </button>
+            <button class="nav-button" onclick="showPage('profile4')">
+                👤 CS Student details
+
+            </button>
+
+            <button class="nav-button" onclick="showPage('profile5')">
+                👤 MECH Student details
+
+            </button>
+
+            <button class="nav-button" onclick="showPage('profile6')">
+                👤 CIVIL Student details
+
+            </button>
+
+            <button class="nav-button" onclick="showPage('profile7')">
+                👤 ECE Student details
+
+            </button>
+
+            <button class="bottom" onclick="window.location.href='index.html'">Logout</button>
+        </div>
+
+
+        <div class="main-content">
+
+            <div id="dashboard" class="page active">
+                <h1>Faculty Dashboard</h1>
+                
+
+                    <div class="card">
+                        <h2>Upcoming College events</h2>
+                        
+                        <div class="event">
+                            <details>
+                                <summary>Click to Check Events</summary>
+                           
+                                <div id="even_main" class="eve">
+                                    <h2>Event list</h2>
+
+                                    <table border="1">
+                                        <thead>
+                                            <tr>
+                                                <th>No</th>
+                                                <th>Event Name</th>
+                                                <th>Event Orginizer</th>
+                                                <th>Event Date</th>
+                                                <th>Event Place</th>
+
+
+
+
+
+                                            </tr>
+
+                                        </thead>
+                                        <tbody id="eventTable">
+                                            <!-- Data will be inserted here -->
+
+
+                                        </tbody>
+                                    </table>
+
+                                    <style>
+                                        .eve table {
+                                            width: 100%;
+                                            
+
+                                        }
+
+                                        summary{
+                                            cursor: pointer;
+                                        }
+                                    </style>
+
+                                </div>
+                            </details>
+                            
+                        </div>
+
+                    </div>
+                    <div class="dashboard-grid"></div>
+                    <div class="card">
+                        <h2>Recent Students</h2>
+                        <p>Students list</p>
+                    </div>
+
+                    <div class="card2">
+                        <h2>Academic Standing Students</h2>
+                        <p>NO of Students</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="profile" class="page">
+                <h1>Faculty Profile</h1>
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <img src="std.jpg" alt="Profile" class="profile-image">
+                        <div>
+                            <h2>Faculty Name</h2>
+                            <p>Faculty RgNO: </p>
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <div class="info-section">
+                            <h3>Personal Information</h3>
+                            <div class="info-item">
+                                <span class="info-label">Email:</span>
+                                <span>xyz1234@example.com</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Phone:</span>
+                                <span>2211354614</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Branch</span>
+                                <span>Computer Science</span>
+                            </div>
+
+                        </div>
+                        <div class="info-section">
+                            <h3>Address</h3>
+                            <div class="info-item">
+                                <span class="info-label">Home address</span>
+                                <span>bagalkot</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="profile2" class="page">
+                <div class="container2">
+                    <span>
+                        <h1>Profile</h1>
+                    </span>
+                    <form action="#">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" placeholder="Name" required>
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" placeholder="Email" required>
+                        <label for="phone">Phone</label>
+                        <input type="tel" name="phone" id="phone" placeholder="Phone" required>
+                        <label for="address">Address</label>
+                        <input type="text" name="address" id="address" placeholder="Address" required>
+                        <label for="city">City</label>
+                        <input type="text" name="city" id="city" placeholder="City" required>
+                        <label for="state">Choose your state</label>
+                        <select name="state" id="state">
+                            <option value="">Not choosen</option>
+                            <option value="Bagalkot">Bagalkot</option>
+                            <option value="Vijayapura">Vijayapura</option>
+                            <option value="Gadaga">Gadaga</option>
+                            <option value="Koppala">Koppala</option>
+                            <option value="Udupi">Udupi</option>
+                            <option value="Banglore">Banglore</option>
+                        </select>
+
+                        <label for="zip">Zip</label>
+                        <input type="text" name="zip" id="zip" placeholder="Zip" required>
+                        <label for="country">Country</label>
+                        <input type="text" name="country" id="country" placeholder="Country" required>
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" name="dob" id="dob" placeholder="Date of Birth" required>
+                        <label for="Profile">Upload your profile image</label>
+                        <input class="profile" type="file" name="profile" id="profile" required>
+                        <button type="submit">Update</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="profile4" class="page">
+            <div id="dashboard2" class="std">
+                <h2>CS Student List</h2>
+
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>DOB</th>
+                            <th>Gender</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Course</th>
+                            <th>Previous_school</th>
+                            <th>Percentage</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody id="studentTable">
+                        <!-- Data will be inserted here -->
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div id="profile5" class="page">
+            <div id="dashboard2" class="std">
+                <h2>MECH Student List</h2>
+
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>DOB</th>
+                            <th>Gender</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Course</th>
+                            <th>Previous_school</th>
+                            <th>Percentage</th>
+
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody id="studentTable2">
+                        <!-- Data will be inserted here -->
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div id="profile6" class="page">
+            <div id="dashboard2" class="std">
+                <h2> CIVIL Student List</h2>
+
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>DOB</th>
+                            <th>Gender</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Course</th>
+                            <th>Previous_school</th>
+                            <th>Percentage</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody id="studentTable3">
+                        <!-- Data will be inserted here -->
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div id="profile7" class="page">
+            <div id="dashboard2" class="std">
+                <h2>ECE Student List</h2>
+
+                <table border="1">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>DOB</th>
+                            <th>Gender</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Course</th>
+                            <th>Previous_school</th>
+                            <th>Percentage</th>
+
+
+
+                        </tr>
+                    </thead>
+                    <tbody id="studentTable4">
+                        <!-- Data will be inserted here -->
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <script>
+        function showPage(pageId) {
+
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            document.getElementById(pageId).classList.add('active');
+
+
+            document.querySelectorAll('.nav-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+
+
+        $(document).ready(function () {
+            $.ajax({
+                url: "fetchs_students.php",
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    let tableContent = "";
+                    data.forEach(student => {
+                        tableContent += `<tr>
+                            <td>${student.student_id}</td>
+                            <td>${student.first_name}</td>
+                            <td>${student.last_name}</td>
+                            <td>${student.dob}</td>
+                            <td>${student.gender}</td>
+                            <td>${student.email}</td>
+                            <td>${student.phone}</td>
+                            <td>${student.address}</td>
+                            <td>${student.course}</td>
+                            <td>${student.previous_school}</td>
+                            <td>${student.percentage}</td>
+                            
+                        </tr>`;
+                    });
+                    $("#studentTable").html(tableContent);
+                },
+                error: function () {
+                    alert("Failed to load student data.");
+                }
+            });
+
+            $.ajax({
+                url: "fetchmech.php",  // Ensure this path is correct
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    let tableContent = "";
+                    data.forEach(student => {
+                        tableContent += `<tr>
+                            <td>${student.student_id}</td>
+                            <td>${student.first_name}</td>
+                            <td>${student.last_name}</td>
+                            <td>${student.dob}</td>
+                            <td>${student.gender}</td>
+                            <td>${student.email}</td>
+                            <td>${student.phone}</td>
+                            <td>${student.address}</td>
+                            <td>${student.course}</td>
+                            <td>${student.previous_school}</td>
+                            <td>${student.percentage}</td>
+                           
+                        </tr>`;
+                    });
+                    $("#studentTable2").html(tableContent);
+                },
+                error: function () {
+                    alert("Failed to load student data.");
+                }
+            });
+
+            $.ajax({
+                url: "fetchcivi.php",  // Ensure this path is correct
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    let tableContent = "";
+                    data.forEach(student => {
+                        tableContent += `<tr>
+                            <td>${student.student_id}</td>
+                            <td>${student.first_name}</td>
+                            <td>${student.last_name}</td>
+                            <td>${student.dob}</td>
+                            <td>${student.gender}</td>
+                            <td>${student.email}</td>
+                            <td>${student.phone}</td>
+                            <td>${student.address}</td>
+                            <td>${student.course}</td>
+                            <td>${student.previous_school}</td>
+                            <td>${student.percentage}</td>
+                            
+                        </tr>`;
+                    });
+                    $("#studentTable3").html(tableContent);
+                },
+                error: function () {
+                    alert("Failed to load student data.");
+                }
+            });
+
+            $.ajax({
+                url: "fetchece.php",  // Ensure this path is correct
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    let tableContent = "";
+                    data.forEach(student => {
+                        tableContent += `<tr>
+                            <td>${student.student_id}</td>
+                            <td>${student.first_name}</td>
+                            <td>${student.last_name}</td>
+                            <td>${student.dob}</td>
+                            <td>${student.gender}</td>
+                            <td>${student.email}</td>
+                            <td>${student.phone}</td>
+                            <td>${student.address}</td>
+                            <td>${student.course}</td>
+                            <td>${student.previous_school}</td>
+                            <td>${student.percentage}</td>
+                          
+                        </tr>`;
+                    });
+                    $("#studentTable4").html(tableContent);
+                },
+                error: function () {
+                    alert("Failed to load student data.");
+                }
+            });
+
+            $.ajax({
+                url: "fetch.php",  // Ensure this path is correct
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    let tableContent = "";
+                    data.forEach(event => {
+                        tableContent += `<tr>
+                        <td>${event.No}</td>
+                        <td>${event.Event_Name}</td>
+                        <td>${event.Event_Organizer}</td>
+                        <td>${event.Event_Date}</td>
+                        <td>${event.Event_Place}</td>
+                          
+                        </tr>`;
+                    });
+                    $("#eventTable").html(tableContent);
+                },
+                error: function () {
+                    alert("Failed to load student data.");
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f5f9;
+        }
+
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+
+        .sidebar {
+            width: 250px;
+            background-color: #1f2937;
+            color: white;
+            padding: 1rem;
+        }
+
+        .sidebar-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+        }
+
+        .nav-button {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: none;
+            border: none;
+            color: white;
+            text-align: left;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .bottom{
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: none;
+            border: none;
+            color: white;
+            text-align: left;
+            cursor: pointer;
+            margin-top: 10rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 550px;
+        }
+
+        .nav-button:hover {
+            background-color: #374151;
+        }
+
+        .nav-button.active {
+            background-color: #2563eb;
+        }
+
+
+        .main-content {
+            flex: 1;
+            padding: 1.5rem;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+
+        .profile-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 1.5rem;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .profile-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .info-section h3 {
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .info-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .info-label {
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        /* update */
+
+        .container2 {
+
+            width: 50%;
+            width: 600px;
+
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            background-color: aquamarine;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            margin-left: 70px;
+            margin-bottom: 20px;
+            background-color: rgb(74, 237, 237);
+            border-radius: 20px;
+            width: 100% auto;
+            width: 400px;
+            padding: 20px;
+        }
+
+        .container2 span h1 {
+            padding: 5px 10px;
+            background-color: #f8e7e7;
+            margin-bottom: 10px;
+            border-radius: 15px;
+            text-align: center;
+            margin-left: 200px;
+            margin-right: 200px;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: rgb(38, 7, 7);
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+
+        }
+
+        select {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: rgb(121, 77, 77);
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: rgb(77, 77, 121);
+        }
+
+        input::placeholder {
+            font-size: 15px;
+
+        }
+
+        input:focus {
+            border: 2px solid rgb(77, 77, 121);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="sidebar">
+            <div class="sidebar-title">Student Portal</div>
+            <button class="nav-button active" onclick="showPage('dashboard')">
+                📊 Dashboard
+            </button>
+            <button class="nav-button" onclick="showPage('profile')">
+                👤 Profile
+            </button>
+            <button class="nav-button" onclick="showPage('profile2')">
+                👤 Update your profile
+            </button>
+
+            <button class="bottom" onclick="window.location.href='index.html'">Logout</button>
+        </div>
+
+
+        <div class="main-content">
+
+            <div id="dashboard" class="page active">
+                <h1>Student Dashboard</h1>
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h2>Current Courses</h2>
+                        <p>You have 5 active courses</p>
+                    </div>
+                    <div class="card">
+                        <h2>Upcoming Assignments</h2>
+                        <p>3 assignments due this week</p>
+                    </div>
+                    <div class="card">
+                        <h2>Recent Grades</h2>
+                        <p>View your latest results</p>
+                    </div>
+
+                    <div class="card">
+                        <h2>Academic Standing</h2>
+                        <p>Good standing</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="profile" class="page">
+                <h1>Student Profile</h1>
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <img src="std.jpg" alt="Profile" class="profile-image">
+                        <div>
+                            <h2>Abhishek</h2>
+                            <p>Student RgNO: 152CS23001</p>
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <div class="info-section">
+                            <h3>Personal Information</h3>
+                            <div class="info-item">
+                                <span class="info-label">Email:</span>
+                                <span>abhi1234@example.com</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Phone:</span>
+                                <span>2211354614</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Branch</span>
+                                <span>Computer Science</span>
+                            </div>
+
+                        </div>
+                        <div class="info-section">
+                            <h3>Academic Status</h3>
+                            <div class="info-item">
+                                <span class="info-label">SGPA:</span>
+                                <span>9.31</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="profile2" class="page">
+                <div class="container2">
+                    <span>
+                        <h1>Profile</h1>
+                    </span>
+                    <form action="#">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" placeholder="Name" required>
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" placeholder="Email" required>
+                        <label for="phone">Phone</label>
+                        <input type="tel" name="phone" id="phone" placeholder="Phone" required>
+                        <label for="address">Address</label>
+                        <input type="text" name="address" id="address" placeholder="Address" required>
+                        <label for="city">City</label>
+                        <input type="text" name="city" id="city" placeholder="City" required>
+                        <label for="state">Choose your state</label>
+                        <select name="state" id="state">
+                            <option value="">Not choosen</option>
+                            <option value="Bagalkot">Bagalkot</option>
+                            <option value="Vijayapura">Vijayapura</option>
+                            <option value="Gadaga">Gadaga</option>
+                            <option value="Koppala">Koppala</option>
+                            <option value="Udupi">Udupi</option>
+                            <option value="Banglore">Banglore</option>
+                        </select>
+
+                        <label for="zip">Zip</label>
+                        <input type="text" name="zip" id="zip" placeholder="Zip" required>
+                        <label for="country">Country</label>
+                        <input type="text" name="country" id="country" placeholder="Country" required>
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" name="dob" id="dob" placeholder="Date of Birth" required>
+                        <label for="Profile">Upload your profile image</label>
+                        <input class="profile" type="file" name="profile" id="profile" required>
+                        <button type="submit">Update</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId) {
+
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            document.getElementById(pageId).classList.add('active');
+
+
+            document.querySelectorAll('.nav-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

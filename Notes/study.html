@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+    body{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        text-decoration: none;
+        list-style: none;
+        font-family: serif;
+        background-color: #f6e5db;
+    }
+
+    #container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #ace6f2;
+        margin: 25px auto;
+        max-width: 1480px;
+        height: 1000px;
+        border: solid 4px black;
+        border-radius: 10px;
+    }
+
+    h1{
+        background-color: #b6d4f2;
+        padding: 5px 25px;
+        border-radius: 5px;
+        border-bottom: solid 2px black;
+    
+    }
+
+    .notes-grid{
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+        
+        gap: 20px;
+        width: 100%;
+        padding: 20px;
+
+    }
+
+    .note-card {
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        margin: 20px;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .note-card:hover{
+        transform: translateY(-5px);
+    }
+
+    .thumbnail-container {
+        width: 100%;
+        height: 150px;
+        margin-bottom: 15px;
+        overflow: hidden;
+        border-radius: 5px;
+    }
+
+    .thumbnail-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .note-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .note-description {
+        color: #666;
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 5px;
+        text-decoration: none;
+        text-align: center;
+    }
+
+    .btn:hover {
+        background-color: #45a049;
+    }
+
+    .btn-view {
+        background-color: #2196F3;
+    }
+
+    .btn-view:hover {
+        background-color: #1976D2;
+    }
+
+    h1 {
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .pdf-preview {
+        width: 100%;
+        height: 500px;
+        border: none;
+        margin: 10px 0;
+        display: none;
+    }
+
+</style>
+</head>
+<body>
+    <main>
+        <section id="container">
+            <h1>Study Notes</h1>
+            <div class="notes-grid">
+                <!-- Card 1 -->
+                <div class="note-card">
+                    <div class="thumbnail-container">
+                        <img src="html.jpg" alt="HTML Basics">
+                    </div>
+                    <div class="note-title">HTML Basics</div>
+                    <div class="note-description">
+                        Complete guide to HTML fundamentals
+                    </div>
+                    <a href="HTML(WT) Lecture Notes.pdf" class="btn" download>Download PDF</a>
+                    <a href="HTML(WT) Lecture Notes.pdf" class="btn btn-view" target="_blank">View PDF</a>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="note-card">
+                    <div class="thumbnail-container">
+                        <img src="css.png" alt="CSS Fundamentals">
+                    </div>
+                    <div class="note-title">CSS Fundamentals</div>
+                    <div class="note-description">
+                        Essential CSS concepts and styling
+                    </div>
+                    <a href="CSSNotesForProfessionals.pdf" class="btn" download>Download PDF</a>
+                    <a href="CSSNotesForProfessionals.pdf" class="btn btn-view" target="_blank">View PDF</a>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="note-card">
+                    <div class="thumbnail-container">
+                        <img src="javas.png" alt="JavaScript Basics">
+                    </div>
+                    <div class="note-title">JavaScript Basics</div>
+                    <div class="note-description">
+                        Introduction to JavaScript programming
+                    </div>
+                    <a href="JavaScript Notes for Professionals.pdf" class="btn" download>Download PDF</a>
+                    <a href="JavaScript Notes for Professionals.pdf" class="btn btn-view" target="_blank">View PDF</a>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="note-card">
+                    <div class="thumbnail-container">
+                        <img src="java.png" alt="React Fundamentals">
+                    </div>
+                    <div class="note-title">Java Programming</div>
+                    <div class="note-description">
+                        Getting started with Java Programming
+                    </div>
+                    <a href="Java Programming.pdf" class="btn" download>Download PDF</a>
+                    <a href="Java Programming.pdf" class="btn btn-view" target="_blank">View PDF</a>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="note-card">
+                    <div class="thumbnail-container">
+                        <img src="dsa.jpg" alt="Node.js Basics">
+                    </div>
+                    <div class="note-title">DSA Notes</div>
+                    <div class="note-description">
+                        Advance DSA Notes
+                    </div>
+                    <a href="Advanced DSA notes.pdf" class="btn" download>Download PDF</a>
+                    <a href="Advanced DSA notes.pdf" class="btn btn-view" target="_blank">View PDF</a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+</body>
+</html>
