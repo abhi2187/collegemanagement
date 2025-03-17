@@ -82,56 +82,88 @@ nav ul li a:hover {
 .section {
     margin-top: -80px;
     padding: 0;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+  }
 
-}
-
-.slider {
-    overflow: hidden;
-    height: 600px;
-    width: 1400px;
-    border-radius: 10px;
-    position: relative;
-}
-
-.slides {
-    width: max-content;
-    height: 100%;
-    display: flex;
-    animation: slide_animation 20s infinite alternate linear;
-    position: absolute;
-}
-
-@keyframes slide_animation {
-    0% {
-        transform: translateX(-4200px);
+  /* ----- Desktop Styles (min-width: 1400px) ----- */
+  @media (min-width: 1400px) {
+    .slider {
+      width: 1400px;
+      height: 600px;
+      overflow: hidden;
+      border-radius: 10px;
+      position: relative;
     }
-
-    33.33% {
-        transform: translateX(-2800px);
+    .slides {
+      display: flex;
+      position: absolute;
+      width: calc(4 * 1400px); /* 5600px total width */
+      height: 100%;
+      animation: slide_animation 20s infinite alternate linear;
     }
-
-    66.66% {
-        transform: translateX(-1400px);
+    /* Keyframes mimic shifting 3 images (3 x 1400px = 4200px) */
+    @keyframes slide_animation {
+      0%   { transform: translateX(-4200px); }
+      33.33% { transform: translateX(-2800px); }
+      66.66% { transform: translateX(-1400px); }
+      100% { transform: translateX(0); }
     }
-
-    100% {
-        transform: translateX(0);
+    .img-container {
+      min-width: 1400px;
+      flex-shrink: 0;
     }
-}
+    .img-container img {
+      width: 100%;
+      height: 100%;
+    }
+  }
 
-.img-container {
-    min-width: 1400px;
-    flex-shrink: 0;
-}
+  /* ----- Mobile Styles (max-width: 1399px) ----- */
+  @media (max-width: 1399px) {
+    .slider {
+      width: 100%;
+      max-width: 360px; /* Mobile target width */
+      height: 740px;    /* Mobile target height */
+      overflow: hidden;
+      border-radius: 10px;
+      position: relative;
+    }
+    .slides {
+      display: flex;
+      /* 4 images, each taking 100% of slider's width: 4 x 100% = 400% total */
+      width: 400%;
+      height: 100%;
+      animation: slide_animation_mobile 20s infinite alternate linear;
+    }
+    /* Mobile keyframes calculated relative to total width:
+       Total width = 400% (i.e. 1440px if 360px wide);
+       Shifting 3 images = 3 * 360px = 1080px, which is 75% of 1440px.
+       Thus:
+       0%: translateX(-75%);
+       33.33%: translateX(-50%);
+       66.66%: translateX(-25%);
+       100%: translateX(0);
+    */
+    @keyframes slide_animation_mobile {
+      0%   { transform: translateX(-75%); }
+      33.33% { transform: translateX(-50%); }
+      66.66% { transform: translateX(-25%); }
+      100% { transform: translateX(0); }
+    }
+    .img-container {
+      width: 100%;
+      flex-shrink: 0;
+    }
+    .img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
 
-.img-container img {
-    width: 100%;
-    height: 100%;
-}
 
 .content {
     display: flex;
