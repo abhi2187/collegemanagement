@@ -1,9 +1,9 @@
 <?php
 // config.php
-$host = 'localhost';
-$db   = 'college_db';  // Replace with your database name
-$user = 'root';       // Replace with your MySQL username
-$pass = 'abhi2006';       // Replace with your MySQL password
+$servername = "sql212.infinityfree.com";
+$username = "if0_38490080";
+$password = "Abhi1234webs";
+$database = "if0_38490080_college_db";
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

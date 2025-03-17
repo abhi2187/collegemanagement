@@ -2,7 +2,10 @@
 header('Content-Type: application/json');
 
 // Database connection
-$conn = new mysqli("localhost", "root", "abhi2006", "college_db");
+$servername = "sql212.infinityfree.com";
+$username = "if0_38490080";
+$password = "Abhi1234webs";
+$database = "if0_38490080_college_db";
 
 if ($conn->connect_error) {
     die(json_encode(['error' => 'Connection failed: ' . $conn->connect_error]));

@@ -1,9 +1,9 @@
 <?php
 header("Content-Type: application/json"); // Ensure JSON output
-$servername = "localhost";
-$username = "root";
-$password = "abhi2006";
-$database = "college_db"; // Change to your actual database name
+$servername = "sql212.infinityfree.com";
+$username = "if0_38490080";
+$password = "Abhi1234webs";
+$database = "if0_38490080_college_db"; // Change to your actual database name
 
 $conn = new mysqli($servername, $username, $password, $database);
 

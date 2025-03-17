@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root"; // Default for WAMP
-$password = "abhi2006"; // Default is empty
-$dbname = "college_db"; // Change this to your DB name
+$servername = "sql212.infinityfree.com";
+$username = "if0_38490080";
+$password = "Abhi1234webs";
+$database = "if0_38490080_college_db";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
